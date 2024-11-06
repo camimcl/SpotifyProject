@@ -1,2 +1,0 @@
-# SpotifyProject
-Spotify Project(Angular)
