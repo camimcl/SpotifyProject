@@ -9,6 +9,8 @@ import { RegisterComponent } from './components/register/register.component';
 import { PlaylistComponent } from './components/playlist/playlist.component';
 import { SongComponent } from './components/song/song.component';
 import { MusicListComponent } from './components/music-list/music-list.component';
+import { HeaderComponent } from './components/header/header.component';
+import { MainContainersComponent } from './components/main-containers/main-containers.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { MusicListComponent } from './components/music-list/music-list.component
     RegisterComponent,
     PlaylistComponent,
     SongComponent,
-    MusicListComponent
+    MusicListComponent,
+    HeaderComponent,
+    MainContainersComponent
   ],
   imports: [
     BrowserModule,

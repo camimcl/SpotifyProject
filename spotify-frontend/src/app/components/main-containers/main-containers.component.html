@@ -1,0 +1,37 @@
+<div class="main-container">
+    <!-- Exibir playlists do usuário -->
+    <div *ngIf="!searchQuery && userPlaylists.length" class="playlists-container">
+      <h2>Suas Playlists</h2>
+      <div class="playlist-cards">
+        <div *ngFor="let playlist of userPlaylists" class="playlist-card">
+          <img [src]="playlist.image" alt="Playlist" />
+          <h3>{{ playlist.name }}</h3>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Exibir músicas aleatórias ou top trendings -->
+    <div *ngIf="!searchQuery && randomSongs.length" class="random-songs-container">
+      <h2>Top Trending</h2>
+      <div class="song-cards">
+        <div *ngFor="let song of randomSongs" class="song-card">
+          <img [src]="song.album.cover" alt="Song" />
+          <h3>{{ song.title }}</h3>
+          <p>{{ song.artist.name }}</p>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Exibir músicas da pesquisa -->
+    <div *ngIf="searchQuery && searchResults.length" class="search-results-container">
+      <h2>Resultados da Pesquisa</h2>
+      <div class="song-cards">
+        <div *ngFor="let song of searchResults" class="song-card">
+          <img [src]="song.album.cover" alt="Song" />
+          <h3>{{ song.title }}</h3>
+          <p>{{ song.artist.name }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  

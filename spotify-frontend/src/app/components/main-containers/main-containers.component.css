@@ -1,0 +1,72 @@
+
+/* Definir o fundo da página como preto */
+.main-container {
+    margin: 0 auto;
+    padding: 20px;
+    max-width: 1200px;
+    background-color: #121212; /* Preto */
+    color: #fff;
+  }
+  
+  /* Playlists e músicas aleatórias */
+  .playlists-container,
+  .random-songs-container,
+  .search-results-container {
+    margin-top: 20px;
+  }
+  
+  h2 {
+    font-size: 24px;
+    color: #fff;
+  }
+  
+  /* Cards de playlists e músicas */
+  .playlist-cards,
+  .song-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+  }
+  
+  /* Card de playlist e música */
+  .playlist-card,
+  .song-card {
+    background: #181818; /* Um preto levemente mais claro */
+    color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background 0.3s ease;
+  }
+  
+  /* Efeito de hover nas músicas */
+  .playlist-card:hover,
+  .song-card:hover {
+    background: #333; /* Cinza claro no hover */
+  }
+  
+  /* Imagens das músicas e playlists */
+  .playlist-card img,
+  .song-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    max-width: 200px;
+  }
+  
+  /* Títulos das playlists e músicas */
+  .playlist-card h3,
+  .song-card h3 {
+    font-size: 18px;
+    margin-top: 10px;
+    font-weight: bold;
+  }
+  
+  /* Subtítulo das músicas */
+  .song-card p {
+    font-size: 14px;
+    color: #b3b3b3;
+  }
+  
