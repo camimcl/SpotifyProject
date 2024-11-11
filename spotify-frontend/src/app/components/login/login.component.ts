@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -9,16 +10,18 @@ import { AuthService } from '../../services/auth.service';
 export class LoginComponent {
   username: string = '';
   password: string = '';
+  errorMessage: string = '';
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router) {}
 
-  login() {
-    this.authService.login({ username: this.username, password: this.password }).subscribe(
-      response => {
-        console.log('Login bem-sucedido', response);
+  onSubmit() {
+    this.authService.login(this.username, this.password).subscribe(
+      (response) => {
+        // Caso de sucesso, redireciona para a tela principal
+        this.router.navigate(['/music-list']);
       },
-      error => {
-        console.error('Erro no login', error);
+      (error) => {
+        this.errorMessage = 'Usuário ou senha inválidos!';
       }
     );
   }

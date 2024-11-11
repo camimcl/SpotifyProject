@@ -1,0 +1,14 @@
+<div class="music-list">
+    <h2>Top Músicas</h2>
+    <ul>
+      <li *ngFor="let music of musicList">
+        <p>{{ music.title }}</p>
+        <p>{{ music.artist.name }}</p>
+        <audio controls>
+          <source [src]="music.preview" type="audio/mp3">
+          Seu navegador não suporta áudio.
+        </audio>
+      </li>
+    </ul>
+  </div>
+  
