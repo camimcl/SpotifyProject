@@ -11,6 +11,7 @@ import { SongComponent } from './components/song/song.component';
 import { MusicListComponent } from './components/music-list/music-list.component';
 import { HeaderComponent } from './components/header/header.component';
 import { MainContainersComponent } from './components/main-containers/main-containers.component';
+import { PainelEsquerdoComponent } from './components/painel-esquerdo/painel-esquerdo.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { MainContainersComponent } from './components/main-containers/main-conta
     SongComponent,
     MusicListComponent,
     HeaderComponent,
-    MainContainersComponent
+    MainContainersComponent,
+    PainelEsquerdoComponent
   ],
   imports: [
     BrowserModule,
