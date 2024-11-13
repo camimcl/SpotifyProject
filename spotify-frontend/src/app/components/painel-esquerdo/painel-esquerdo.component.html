@@ -1,24 +1,19 @@
-<button class="open-button" *ngIf="isHidden" (click)="toggleSidebar()">
-    <i class="fa-solid fa-chevron-right"></i>
-</button>
-<div class="sidebar" [class.hidden]="isHidden">
+<div class="sidebar" [ngClass]="{ 'sidebar-open': isOpen, 'sidebar-minimized': !isOpen }">
+  <div class="sidebar-header">
+    <h2 *ngIf="isOpen">Sua Biblioteca</h2>
+    <i *ngIf="isOpen" class="fa fa-plus"></i>
     <button class="toggle-button" (click)="toggleSidebar()">
-        <i class="fa-solid fa-chevron-left"></i>
-      </button>
-    <!-- Título e ícone de adição -->
-    <div class="sidebar-header">
-      <h2>Sua Biblioteca</h2>
-      <i class="fa-solid fa-plus add-icon"></i>
-    </div>
-  
-    <!-- Seção de playlists -->
-    <div class="playlists-section">
-      <h3>Playlists</h3>
-      <ul class="playlist-list">
-        <li *ngFor="let playlist of userPlaylists" class="playlist-item">
-          {{ playlist.name }}
-        </li>
-      </ul>
+      <i [ngClass]="{'fa-arrow-left': isOpen,'fa-solid fa-bars': !isOpen }" class="fa"></i>
+    </button>
+  </div>
+
+  <div class="sidebar-content">
+    <div class="playlist-item" *ngFor="let playlist of playlists">
+      <img [src]="playlist.image" alt="Playlist" class="playlist-image" />
+      <div *ngIf="isOpen" class="playlist-info">
+        <h3>{{ playlist.name }}</h3>
+        <p>{{ playlist.owner }}</p>
+      </div>
     </div>
   </div>
-  
+</div>

@@ -6,15 +6,16 @@ import { Component } from '@angular/core';
   styleUrl: './painel-esquerdo.component.css'
 })
 export class PainelEsquerdoComponent {
-  isHidden = false; 
-  userPlaylists = [
-    { name: 'Playlist 1' },
-    { name: 'Playlist 2' },
-    { name: 'Playlist 3' },
-    { name: 'Playlist 4' },
-    { name: 'Playlist 5' }
+  isOpen = true;
+
+  playlists = [
+    { name: 'Músicas Curtidas', owner: 'Usuário', image: 'https://via.placeholder.com/50' },
+    { name: 'Playlist 1', owner: 'Usuário', image: 'https://via.placeholder.com/50' },
+    { name: 'Playlist 2', owner: 'Usuário', image: 'https://via.placeholder.com/50' },
+    // Adicione mais playlists conforme necessário
   ];
+
   toggleSidebar() {
-    this.isHidden = !this.isHidden;
+    this.isOpen = !this.isOpen;
   }
 }
