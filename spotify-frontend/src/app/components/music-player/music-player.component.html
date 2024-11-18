@@ -1,0 +1,22 @@
+<!-- music-player.component.html -->
+<div *ngIf="currentSong" class="music-player">
+  <div class="song-info">
+    <img [src]="currentSong.album.cover" alt="Album Cover">
+    <div class="song-details">
+      <p>{{ currentSong.title }}</p>
+      <p>{{ currentSong.artist.name }}</p>
+    </div>
+  </div>
+
+  <div class="playback-controls">
+    <span>{{ currentTime | date:'mm:ss' }}</span>
+    <i class="fas" [ngClass]="isPlaying ? 'fa-pause' : 'fa-play'" (click)="togglePlayPause()"></i>
+    <span>{{ currentSong.duration | date:'mm:ss' }}</span>
+    <input type="range" min="0" [max]="currentSong.duration" [(ngModel)]="currentTime" (input)="seekTo($event)">
+  </div>
+
+  <div class="volume-control">
+    <i class="fas fa-volume-up"></i>
+    <input type="range" min="0" max="100" (input)="changeVolume($event)">
+  </div>
+</div>
