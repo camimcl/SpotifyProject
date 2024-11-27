@@ -3,17 +3,17 @@
     <h2 *ngIf="isOpen">Sua Biblioteca</h2>
     <i *ngIf="isOpen" class="fa fa-plus"></i>
     <button class="toggle-button" (click)="toggleSidebar()">
-      <i [ngClass]="{'fa-arrow-left': isOpen,'fa-solid fa-bars': !isOpen }" class="fa"></i>
+      <i [ngClass]="{'fa-arrow-left': isOpen, 'fa-solid fa-bars': !isOpen }" class="fa"></i>
     </button>
   </div>
 
   <div class="sidebar-content">
     <div class="playlist-item" *ngFor="let playlist of playlists">
       <img [src]="playlist.image" alt="Playlist" class="playlist-image" />
-      <div *ngIf="isOpen" class="playlist-info">
-        <h3>{{ playlist.name }}</h3>
-        <p>{{ playlist.owner }}</p>
-      </div>
+        <div *ngIf="isOpen" class="playlist-info">
+          <h3>{{ playlist.name }}</h3>
+          <p>{{ playlist.owner }}</p>
+        </div>
     </div>
   </div>
 </div>

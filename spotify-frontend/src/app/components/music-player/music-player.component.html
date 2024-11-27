@@ -1,22 +1,27 @@
-<!-- music-player.component.html -->
-<div *ngIf="currentSong" class="music-player">
+<div class="music-player">
   <div class="song-info">
-    <img [src]="currentSong.album.cover" alt="Album Cover">
-    <div class="song-details">
-      <p>{{ currentSong.title }}</p>
-      <p>{{ currentSong.artist.name }}</p>
+    <img [src]="currentSong.album.images[0]?.url" alt="Cover" />
+    <div>
+      <h6>{{ currentSong.name }}</h6>
+      <p>{{ currentSong.artists[0]?.name }}</p>
     </div>
   </div>
-
-  <div class="playback-controls">
-    <span>{{ currentTime | date:'mm:ss' }}</span>
-    <i class="fas" [ngClass]="isPlaying ? 'fa-pause' : 'fa-play'" (click)="togglePlayPause()"></i>
-    <span>{{ currentSong.duration | date:'mm:ss' }}</span>
-    <input type="range" min="0" [max]="currentSong.duration" [(ngModel)]="currentTime" (input)="seekTo($event)">
-  </div>
-
-  <div class="volume-control">
-    <i class="fas fa-volume-up"></i>
-    <input type="range" min="0" max="100" (input)="changeVolume($event)">
+  <div class="controls">
+    <button><i class="fas fa-backward"></i></button>
+    <button>
+      <i class="fas fa-play"></i>
+    </button>
+    <button><i class="fas fa-forward"></i></button>
+    <div *ngIf="currentSong">
+      <div class="progress-container">
+        <span>{{ '0:00' }}</span>
+        <input type="range" [max]="currentSong.duration_ms" value="0" disabled />
+        <span>{{ currentSong.duration_ms | durationPipeTs }}</span> 
+      </div>
   </div>
 </div>
+<div class="volume">
+  <i class="fas fa-volume-up"></i>
+  <input type="range" min="0" max="1" step="0.01" [(ngModel)]="volume" />
+</div>
+  

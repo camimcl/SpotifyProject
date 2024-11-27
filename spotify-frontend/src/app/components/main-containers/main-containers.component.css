@@ -3,9 +3,9 @@
 .main-container {
     margin: 0 auto;
     padding: 20px;
-    max-width: 1200px;
     background-color: #121212; /* Preto */
     color: #fff;
+    max-width: 78vw;
   }
   
   /* Playlists e músicas aleatórias */

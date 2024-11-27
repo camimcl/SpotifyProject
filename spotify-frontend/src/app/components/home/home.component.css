@@ -1,0 +1,82 @@
+/* Container principal da home */
+.home-container {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  color: white;
+  margin-left: 240px;  /* Largura padrão da sidebar */
+  transition: margin-left 0.3s ease;
+}
+
+/* Ajusta o conteúdo quando a sidebar está minimizada */
+.home-container.sidebar-minimized {
+  margin-left: 90px;  /* Largura da sidebar minimizada */
+}
+
+/* Estilos das seções */
+.section {
+  margin-bottom: 40px;
+  width: 100%;
+}
+
+/* Estilos das seções com Flexbox para responsividade */
+.song-cards, .artist-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;  /* Distribui igualmente */
+  gap: 20px;  /* Espaçamento entre os cards */
+}
+
+/* Cards ajustáveis */
+.song-card, .artist-card {
+  flex: 1 1 calc(25% - 20px);  /* 4 cards por linha (ajustável) */
+  max-width: calc(13% - 20px);
+  background-color: #181818;
+  border-radius: 8px;
+  text-align: center;
+  padding: 10px;
+  transition: transform 0.2s;
+  box-sizing: border-box;
+}
+
+/* Ajuste para telas menores */
+@media (max-width: 768px) {
+  .song-card, .artist-card {
+    flex: 1 1 calc(50% - 20px);  /* 2 cards por linha em telas menores */
+    max-width: calc(50% - 20px);
+  }
+}
+
+@media (max-width: 480px) {
+  .song-card, .artist-card {
+    flex: 1 1 100%;  /* 1 card por linha em telas muito pequenas */
+    max-width: 100%;
+  }
+}
+  
+  .song-card img, .artist-card img {
+    width: 100%;
+    border-radius: 8px;
+  }
+  
+  /* Efeito de zoom ao passar o mouse */
+  .song-card:hover, .artist-card:hover {
+    transform: scale(1.05);
+  }
+  
+  /* Botão Mostrar Mais */
+  .show-more-btn {
+    background-color: #1DB954;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+  
+  .show-more-btn:hover {
+    background-color: #1ed760;
+  }
+  

@@ -2,15 +2,16 @@
 <header>
     <!-- Barra de pesquisa -->
      <div class="logo">
-        <i class="fa-brands fa-spotify"></i> 
+        <i (click)="goHome()" class="fa-brands fa-spotify"></i> 
      </div>
     <div class="home-icon">
-      <button>
+      <button (click)="goHome()">
         <i class="fa-solid fa-house home-icon"></i>
       </button>
     </div>
     <div class="search-bar">
-      <input type="text" [(ngModel)]="searchQuery" (ngModelChange)="searchSongs()" placeholder="O que você quer ouvir?" class="search-input" />
+      <input type="text" [(ngModel)]="searchQuery" (ngModelChange)="searchSongs()" placeholder="O que você quer ouvir?" class="search-input" 
+      (keydown.enter)="onSearch()"/>
       <i class="fa-solid fa-magnifying-glass search-icon"></i> 
     </div>
     <div class="profile-icon">

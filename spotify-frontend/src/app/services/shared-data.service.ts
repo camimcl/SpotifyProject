@@ -7,9 +7,11 @@ import { BehaviorSubject } from 'rxjs';
 export class SharedDataService {
   private searchQuerySource = new BehaviorSubject<string>('');
   private searchResultsSource = new BehaviorSubject<any[]>([]);
+  private currentSongSource = new BehaviorSubject<any>(null);
 
   searchQuery$ = this.searchQuerySource.asObservable();
   searchResults$ = this.searchResultsSource.asObservable();
+  currentSong$ = this.currentSongSource.asObservable();
 
   setSearchQuery(query: string) {
     this.searchQuerySource.next(query);
@@ -17,5 +19,9 @@ export class SharedDataService {
 
   setSearchResults(results: any[]) {
     this.searchResultsSource.next(results);
+  }
+
+  setCurrentSong(song: any) {
+    this.currentSongSource.next(song);
   }
 }

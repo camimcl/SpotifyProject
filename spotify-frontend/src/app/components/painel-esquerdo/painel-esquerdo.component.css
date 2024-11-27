@@ -1,9 +1,8 @@
 /* Estilos básicos da sidebar */
 .sidebar {
   position: fixed;
-  bottom :0;
   left: 0;
-  height: 92vh;
+  height: 87vh;
   width: 240px; /* Largura quando a sidebar está aberta */
   background-color: #121212;
   overflow-y: auto;
@@ -14,8 +13,43 @@
 
 /* Sidebar minimizada */
 .sidebar-minimized {
-  width: 80px; /* Largura quando a sidebar está minimizada */
+  width: 90px; /* Largura quando a sidebar está minimizada */
 }
+/* Define a largura do scrollbar */
+.sidebar::-webkit-scrollbar {
+  width: 8px;  /* Largura do scrollbar */
+}
+
+/* Estiliza o trilho (track) do scrollbar */
+.sidebar::-webkit-scrollbar-track {
+  background: #121212;  /* Fundo preto do trilho */
+  border-radius: 10px;
+}
+
+/* Estiliza o polegar (thumb) do scrollbar */
+.sidebar::-webkit-scrollbar-thumb {
+  background-color: transparent;  /* Começa transparente */
+  border-radius: 10px;
+  border: 2px solid #121212;  /* Fundo preto ao redor do thumb */
+  transition: background-color 0.3s ease;  /* Transição suave */
+}
+
+/* Torna o thumb visível ao passar o mouse */
+.sidebar:hover::-webkit-scrollbar-thumb {
+  background-color: #888;  /* Cor cinza do thumb */
+}
+
+/* Efeito no Firefox */
+.sidebar {
+  scrollbar-width: thin;  /* Largura fina */
+  scrollbar-color: transparent transparent;  /* Thumb e track transparentes */
+}
+
+/* Ajusta a cor do scrollbar ao passar o mouse */
+.sidebar:hover {
+  scrollbar-color: #888 #121212;  /* Cor do thumb e do track */
+}
+
 
 .sidebar-header {
   display: flex;

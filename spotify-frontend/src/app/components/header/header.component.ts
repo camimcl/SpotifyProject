@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { DeezerService } from '../../services/deezer.service';
+import { SpotifyService } from '../../services/spotify.service';
 import { SharedDataService } from '../../services/shared-data.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-header',
@@ -11,16 +13,28 @@ export class HeaderComponent  {
   searchQuery: string = '';
 
   constructor(
-    private deezerService: DeezerService,
-    private sharedDataService: SharedDataService // Serviço compartilhado
+    private spotifyService: SpotifyService,
+    private sharedDataService: SharedDataService,
+    private router : Router 
   ) {}
 
   searchSongs() {
     if (this.searchQuery.trim()) {
       this.sharedDataService.setSearchQuery(this.searchQuery); // Atualiza o query no serviço
-      this.deezerService.searchSongs(this.searchQuery).subscribe(response => {
-        this.sharedDataService.setSearchResults(response.data); // Atualiza os resultados no serviço
+      this.spotifyService.searchSongs(this.searchQuery).subscribe(response => {
+        console.log(response);
+        this.sharedDataService.setSearchResults(response.tracks); // Atualiza os resultados no serviço
       });
     }
   }
+  onSearch(): void {
+    if (this.searchQuery.trim()) {
+      this.sharedDataService.setSearchQuery(this.searchQuery);  // Atualiza o serviço compartilhado
+      this.router.navigate(['/search']);  // Redireciona para a página de pesquisa
+    }
+  }
+  goHome() {
+    this.router.navigate(['/home']); 
+  }
+  
 }

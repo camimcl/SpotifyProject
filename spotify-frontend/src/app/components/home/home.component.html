@@ -1,0 +1,25 @@
+<div [class.sidebar-minimized="isSidebarMinimized" class="home-container">
+
+  <div class="section">
+    <h2>Top Trendings</h2>
+    <div class="song-cards">
+      <div *ngFor="let song of topSongs | slice:0:showMoreTopSongsCount" class="song-card">
+        <img [src]="song.track.album.images[0]?.url" alt="Album cover" />
+        <h3>{{ song.track.name }}</h3>
+        <p>{{ song.track.artists[0].name }}</p>
+      </div>
+    </div>
+    <button class="show-more-btn" (click)="showMoreTopSongs()">Mostrar mais</button>
+  </div>
+  
+  <div class="section">
+    <h2>Artistas Recomendados</h2>
+    <div class="artist-cards">
+      <div *ngFor="let artist of recommendedArtists | slice:0:showMoreArtistsCount" class="artist-card">
+        <img [src]="artist.images[0]?.url" alt="Artist image" />
+        <h3>{{ artist.name }}</h3>
+      </div>
+    </div>
+    <button class="show-more-btn" (click)="showMoreArtists()">Mostrar mais</button>
+  </div>
+</div>

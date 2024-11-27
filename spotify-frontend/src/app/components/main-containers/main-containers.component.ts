@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SharedDataService } from '../../services/shared-data.service';
+import { TSearchResults } from '../../types/main-containers-types';
 
 @Component({
   selector: 'app-main-containers',
@@ -8,7 +9,7 @@ import { SharedDataService } from '../../services/shared-data.service';
 })
 export class MainContainersComponent implements OnInit {
   searchQuery: string = '';
-  searchResults: any[] = [];
+  searchResults: TSearchResults | undefined = undefined;
   userPlaylists: any[] = [];
   randomSongs: any[] = [];
 
@@ -21,8 +22,9 @@ export class MainContainersComponent implements OnInit {
     });
 
     // Observa as mudanças em `searchResults`
-    this.sharedDataService.searchResults$.subscribe(results => {
+    this.sharedDataService.searchResults$.subscribe((results: any) => {
       this.searchResults = results;
+      console.log(results);
     });
 
     // Carregar playlists e músicas aleatórias
@@ -42,5 +44,8 @@ export class MainContainersComponent implements OnInit {
       { title: 'Música 1', artist: { name: 'Artista 1' }, album: { cover: 'https://via.placeholder.com/200' } },
       { title: 'Música 2', artist: { name: 'Artista 2' }, album: { cover: 'https://via.placeholder.com/200' } }
     ];
+  }
+  selectSong(song: any) {
+    this.sharedDataService.setCurrentSong(song);
   }
 }
