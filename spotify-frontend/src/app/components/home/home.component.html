@@ -1,25 +1,28 @@
-<div [class.sidebar-minimized="isSidebarMinimized" class="home-container">
-
+<div class="home-container" [class.sidebar-minimized]="isSidebarMinimized">
   <div class="section">
-    <h2>Top Trendings</h2>
+    <h2>Músicas Recentemente Tocadas</h2>
     <div class="song-cards">
-      <div *ngFor="let song of topSongs | slice:0:showMoreTopSongsCount" class="song-card">
-        <img [src]="song.track.album.images[0]?.url" alt="Album cover" />
-        <h3>{{ song.track.name }}</h3>
-        <p>{{ song.track.artists[0].name }}</p>
+      <div *ngFor="let song of displayedRecentlyPlayedSongs" class="song-card">
+        <img [src]="song.album.images[0]?.url" alt="Album cover" />
+        <h3>{{ song.name }}</h3>
+        <p>{{ song.artists[0].name }}</p>
       </div>
     </div>
-    <button class="show-more-btn" (click)="showMoreTopSongs()">Mostrar mais</button>
+    <button class="show-more-btn" (click)="toggleDisplayMoreSongs()">
+      {{ isExpanded ? 'Mostrar Menos' : 'Mostrar Mais' }}
+    </button>
   </div>
   
   <div class="section">
-    <h2>Artistas Recomendados</h2>
+    <h2>Artistas Mais Escutados</h2>
     <div class="artist-cards">
-      <div *ngFor="let artist of recommendedArtists | slice:0:showMoreArtistsCount" class="artist-card">
+      <div *ngFor="let artist of displayedTopArtists" class="artist-card">
         <img [src]="artist.images[0]?.url" alt="Artist image" />
         <h3>{{ artist.name }}</h3>
       </div>
     </div>
-    <button class="show-more-btn" (click)="showMoreArtists()">Mostrar mais</button>
+    <button class="show-more-btn" (click)="toggleDisplayMoreArtists()">
+       {{ isArtistExpanded ? 'Mostrar Menos' : 'Mostrar Mais' }}
+      </button>
   </div>
 </div>

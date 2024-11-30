@@ -7,45 +7,79 @@ import { SpotifyService } from '../../services/spotify.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  topSongs: any[] = [];
-  recommendedArtists: any[] = [];
+  topArtists: any[] = []; 
+  recentlyPlayedSongs: any[] = [];
+  displayedRecentlyPlayedSongs: any[] = [];
+  displayedTopArtists: any[] = []; 
 
-  showMoreTopSongsCount = 10;   
-  showMoreArtistsCount = 10;   
-  isSidebarMinimized = false; 
+  showMoreArtistsCount = 5;   
+  showMoreRecentlyPlayedCount = 5;
+
+  isExpanded = false;
+  isArtistExpanded = false; 
+
+  isSidebarMinimized = false;
 
   constructor(private spotifyService: SpotifyService) {}
 
   ngOnInit(): void {
-    this.loadTopTrendings();
-    this.loadRecommendedArtists();
+    this.loadRecentlyPlayed();
+    this.loadTopArtists(); // Carrega os artistas mais escutados
+  
   }
 
-  loadTopTrendings(): void {
+  loadRecentlyPlayed(): void {
     this.spotifyService.getRecentlyPlayed().subscribe(
       (data: any) => {
-        this.topSongs = data.items.map((item: { track: any; }) => item.track);  // Ajusta para tracks recentes
+        const uniqueTracks = new Map();  
+        data.items.forEach((item: { track: any }) => {
+          uniqueTracks.set(item.track.id, item.track);  
+        });
+        this.recentlyPlayedSongs = Array.from(uniqueTracks.values());  
+        this.updateDisplayedRecentlyPlayedSongs();
       },
-      error => console.error('Erro ao buscar músicas recentes:', error)
+      (error) => console.error('Erro ao buscar músicas recentemente tocadas:', error)
     );
   }
-  loadRecommendedArtists(): void {
-    this.spotifyService.getRecommendedArtists().subscribe(
+
+  loadTopArtists(): void {
+    this.spotifyService.getTopArtists().subscribe(
       (data: any) => {
-        this.recommendedArtists = data.artists;
+        this.topArtists = data.items; // Armazena os artistas mais escutados
+        this.updateDisplayedTopArtists();
       },
-      error => console.error('Erro ao buscar os artistas recomendados:', error)
+      error => console.error('Erro ao buscar artistas mais escutados:', error)
     );
   }
 
-  showMoreTopSongs(): void {
-    this.showMoreTopSongsCount += 6;  
+  updateDisplayedTopArtists(): void {
+    if (this.isArtistExpanded) {
+      this.displayedTopArtists = this.topArtists;
+    } else {
+      this.displayedTopArtists = this.topArtists.slice(0, this.showMoreArtistsCount);
+    }
   }
 
-  showMoreArtists(): void {
-    this.showMoreArtistsCount += 6;  
-  }
   toggleSidebar(): void {
     this.isSidebarMinimized = !this.isSidebarMinimized;
+  }
+
+  // Função para alternar entre mostrar mais ou menos artistas
+  toggleDisplayMoreArtists(): void {
+    this.isArtistExpanded = !this.isArtistExpanded;
+    this.updateDisplayedTopArtists();
+  }
+
+  toggleDisplayMoreSongs(): void {
+    this.isExpanded = !this.isExpanded;
+    this.updateDisplayedRecentlyPlayedSongs();
+  }
+
+  updateDisplayedRecentlyPlayedSongs(): void {
+    if (this.isExpanded) {
+      this.displayedRecentlyPlayedSongs = this.recentlyPlayedSongs;
+    } else {
+      this.displayedRecentlyPlayedSongs = this.recentlyPlayedSongs.slice(0, this.showMoreRecentlyPlayedCount);
+    }
   }
 }

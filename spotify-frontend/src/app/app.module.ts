@@ -10,6 +10,7 @@ import { PainelEsquerdoComponent } from './components/painel-esquerdo/painel-esq
 import { MusicPlayerComponent } from './components/music-player/music-player.component';
 import { DurationPipeTsPipe } from './duration.pipe.ts.pipe'; 
 import { HomeComponent } from './components/home/home.component';
+import { SidebarToggleDirective } from './directives/sidebar-toggle.directive';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { HomeComponent } from './components/home/home.component';
     MusicPlayerComponent,
     HomeComponent,
     DurationPipeTsPipe,
+    SidebarToggleDirective,
   ],
   exports: [DurationPipeTsPipe],
   imports: [

@@ -1,5 +1,5 @@
 <div class="music-player">
-  <div class="song-info">
+  <div class="song-info" *ngIf="currentSong!=null">
     <img [src]="currentSong.album.images[0]?.url" alt="Cover" />
     <div>
       <h6>{{ currentSong.name }}</h6>

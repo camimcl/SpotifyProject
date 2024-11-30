@@ -5,6 +5,7 @@
   padding: 20px;
   color: white;
   margin-left: 240px;  /* Largura padrão da sidebar */
+  margin-right: 240px;
   transition: margin-left 0.3s ease;
 }
 
@@ -15,22 +16,21 @@
 
 /* Estilos das seções */
 .section {
+  position: relative;
   margin-bottom: 40px;
   width: 100%;
 }
 
 /* Estilos das seções com Flexbox para responsividade */
 .song-cards, .artist-cards {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;  /* Distribui igualmente */
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Cria colunas automáticas que se ajustam ao tamanho */
   gap: 20px;  /* Espaçamento entre os cards */
+  transition: all 0.3s ease;
 }
 
 /* Cards ajustáveis */
 .song-card, .artist-card {
-  flex: 1 1 calc(25% - 20px);  /* 4 cards por linha (ajustável) */
-  max-width: calc(13% - 20px);
   background-color: #181818;
   border-radius: 8px;
   text-align: center;
@@ -39,21 +39,17 @@
   box-sizing: border-box;
 }
 
-/* Ajuste para telas menores */
 @media (max-width: 768px) {
-  .song-card, .artist-card {
-    flex: 1 1 calc(50% - 20px);  /* 2 cards por linha em telas menores */
-    max-width: calc(50% - 20px);
+  .song-cards {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Mais flexível para telas pequenas */
   }
 }
 
 @media (max-width: 480px) {
-  .song-card, .artist-card {
-    flex: 1 1 100%;  /* 1 card por linha em telas muito pequenas */
-    max-width: 100%;
+  .song-cards {
+    grid-template-columns: 1fr; /* 1 card por linha em telas muito pequenas */
   }
 }
-  
   .song-card img, .artist-card img {
     width: 100%;
     border-radius: 8px;
@@ -66,17 +62,28 @@
   
   /* Botão Mostrar Mais */
   .show-more-btn {
-    background-color: #1DB954;
-    color: white;
+    position: absolute;
+    top: 5px;        /* Ajuste a distância do topo da seção */
+    right: 10px;      /* Ajuste a distância da borda direita da seção */
+    padding: 8px 16px;
+    background-color: #1DB954; /* Cor do botão (opcional) */
     border: none;
     border-radius: 20px;
-    padding: 10px 20px;
-    font-size: 14px;
+    color: white;
     cursor: pointer;
-    margin-top: 20px;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
   }
   
   .show-more-btn:hover {
     background-color: #1ed760;
   }
+
+  .home-container {
+    transition: margin-left 0.3s ease;
+    margin-left: 240px;  /* Largura padrão da sidebar */
+  }
   
+  .sidebar-minimized .home-container {
+    margin-left: 90px;  /* Largura da sidebar minimizada */
+  }
