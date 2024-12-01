@@ -2,8 +2,8 @@ export const environment = {
     production: false
   };
   
+  //827e77807cb044338f10aec901435ea4
   export const SpotifyConfiguration = {
-    //827e77807cb044338f10aec901435ea4
     clientId: '9f14328d10f14b52a0dac4e2ab4dd15e',
     authEndpoint: 'https://accounts.spotify.com/authorize',
     redirectUrl: 'http://localhost:4200/login',
