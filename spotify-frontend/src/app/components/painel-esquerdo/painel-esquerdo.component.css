@@ -1,55 +1,47 @@
-/* Estilos básicos da sidebar */
 .sidebar {
-  position: fixed;
+  position: absolute;
+  z-index: 999;
   left: 0;
-  height: 87vh;
-  width: 240px; /* Largura quando a sidebar está aberta */
+  height: 85vh;
+  width: 250px; 
   background-color: #121212;
   overflow-y: auto;
   overflow-x: hidden;
   transition: width 0.3s ease;
-  padding-top: 60px; /* Espaço para o header */
+  padding-top: 60px; 
+  border-radius: 10px;
 }
 
-/* Sidebar minimizada */
 .sidebar-minimized {
-  width: 90px; /* Largura quando a sidebar está minimizada */
+  width: 100px; 
 }
-/* Define a largura do scrollbar */
 .sidebar::-webkit-scrollbar {
-  width: 8px;  /* Largura do scrollbar */
+  width: 8px; 
 }
 
-/* Estiliza o trilho (track) do scrollbar */
 .sidebar::-webkit-scrollbar-track {
-  background: #121212;  /* Fundo preto do trilho */
+  background: #121212;  
   border-radius: 10px;
 }
 
-/* Estiliza o polegar (thumb) do scrollbar */
 .sidebar::-webkit-scrollbar-thumb {
-  background-color: transparent;  /* Começa transparente */
+  background-color: transparent;  
   border-radius: 10px;
-  border: 2px solid #121212;  /* Fundo preto ao redor do thumb */
-  transition: background-color 0.3s ease;  /* Transição suave */
+  transition: background-color 0.3s ease;  
 }
 
-/* Torna o thumb visível ao passar o mouse */
 .sidebar:hover::-webkit-scrollbar-thumb {
-  background-color: #888;  /* Cor cinza do thumb */
+  background-color: #888;  
 }
 
-/* Efeito no Firefox */
 .sidebar {
-  scrollbar-width: thin;  /* Largura fina */
-  scrollbar-color: transparent transparent;  /* Thumb e track transparentes */
+  scrollbar-width: thin;  
+  scrollbar-color: transparent transparent;  
 }
 
-/* Ajusta a cor do scrollbar ao passar o mouse */
 .sidebar:hover {
-  scrollbar-color: #888 #121212;  /* Cor do thumb e do track */
+  scrollbar-color: #888 #121212; 
 }
-
 
 .sidebar-header {
   display: flex;
@@ -72,7 +64,6 @@
   font-size: 18px;
 }
 
-/* Estilo dos itens da playlist */
 .sidebar-content {
   display: flex;
   flex-direction: column;
@@ -90,11 +81,12 @@
 
 .playlist-item:hover {
   background-color: #333;
+  border-radius: 5px ;
 }
 
 .playlist-image {
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
   border-radius: 5px;
 }
 
@@ -104,24 +96,22 @@
 }
 
 .playlist-info h3 {
-  font-size: 14px;
+  font-size: 18px;
   margin: 0;
 }
 
 .playlist-info p {
-  font-size: 12px;
+  font-size: 15px;
   margin: 0;
   color: #aaa;
 }
 
-/* Ocultar o texto e manter apenas a imagem no modo minimizado */
 .sidebar-minimized .playlist-info,
 .sidebar-minimized h2,
 .sidebar-minimized .fa-plus {
   display: none;
 }
 
-/* Ajustes no botão de alternância entre aberto/fechado */
 .toggle-button {
   position: absolute;
   top: 10px;

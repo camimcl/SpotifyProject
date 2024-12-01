@@ -8,7 +8,7 @@ import { SharedDataService } from '../../services/shared-data.service';
 })
 export class MusicPlayerComponent implements OnInit {
   currentSong: any = null;
-  audio: HTMLAudioElement | null = null; // Inicialmente null
+  audio: HTMLAudioElement | null = null; 
   isPlaying = false;
   currentTime = 0;
   duration = 0;
@@ -18,7 +18,7 @@ export class MusicPlayerComponent implements OnInit {
 
   ngOnInit(): void {
     this.sharedDataService.currentSong$.subscribe(song => {
-      this.currentSong = song;  // Atualiza a música atual
+      this.currentSong = song;  
     });
   }
 

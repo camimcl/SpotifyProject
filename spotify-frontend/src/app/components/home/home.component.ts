@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SpotifyService } from '../../services/spotify.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -12,20 +13,24 @@ export class HomeComponent implements OnInit {
   displayedRecentlyPlayedSongs: any[] = [];
   displayedTopArtists: any[] = []; 
 
-  showMoreArtistsCount = 5;   
-  showMoreRecentlyPlayedCount = 5;
+  showMoreArtistsCount = 6;   
+  showMoreRecentlyPlayedCount = 6;
 
   isExpanded = false;
   isArtistExpanded = false; 
 
   isSidebarMinimized = false;
 
-  constructor(private spotifyService: SpotifyService) {}
+  constructor(private spotifyService: SpotifyService,private router : Router) {}
 
   ngOnInit(): void {
-    this.loadRecentlyPlayed();
-    this.loadTopArtists(); // Carrega os artistas mais escutados
-  
+   if(!this.spotifyService.temTokenValido()){
+    this.router.navigate(['/login'])
+   }
+   else{
+     this.loadRecentlyPlayed();
+     this.loadTopArtists(); 
+   }
   }
 
   loadRecentlyPlayed(): void {
@@ -64,7 +69,6 @@ export class HomeComponent implements OnInit {
     this.isSidebarMinimized = !this.isSidebarMinimized;
   }
 
-  // Função para alternar entre mostrar mais ou menos artistas
   toggleDisplayMoreArtists(): void {
     this.isArtistExpanded = !this.isArtistExpanded;
     this.updateDisplayedTopArtists();

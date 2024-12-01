@@ -1,118 +1,97 @@
 header {
-    position: sticky;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start; /* Alinha a barra de pesquisa no topo */
-    padding-top: 20px;
-    top: 0;
-    background-color: #121212; 
-    z-index: 1000;/* Ajuste a distância do topo */
-  }
-.search-input {
-    padding: 10px; 
-    font-size: 16px;
-    border-radius: 25px;
-    border: 2px solid transparent;
-    outline: none;
-    background-color: #2d2d2d; /* Leve tom cinza para a barra de pesquisa */
-    color: #fff;
-    padding-left: 40px; /* Espaçamento à esquerda para o ícone */
-    width: 100%;
-    height: 50px;
-   
-  }
-  
-  .search-input:focus {
-    border: 2px solid #ccc; /* Cor do Spotify */
-  }
-  .search-input:hover{
-   background-color:#333 ; /* Cor do Spotify */
-  }
-
-.fa-spotify {
-  color: #ffffff;  /* Cor verde do Spotify */
-  font-size: 40px; 
-  position: absolute;
-  top: 20px;
-  left: 20px; /* Alinha a logo no canto superior esquerdo */
-  width: 40px; /* Ajuste o tamanho da logo */
-  height: auto; /* Tamanho do ícone */
+  position: sticky;
+  width: 100%;
+  height: 80px;
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+  padding: 0 20px;
+  top: 0;
+  background-color: #121212;
+  z-index: 1000;
 }
 
-  /* Barra de pesquisa */
-  .search-bar {
-    width: 25%; /* Barra de pesquisa ocupa 40% da largura da tela */
-    display: flex;
-    align-items: center;
-    position: relative;
-    text-align: center;
-    margin-bottom: 20px;
-  }
-
-  .search-icon {
-  position: absolute;
-  left: 10px; /* Ajuste o valor para posicionar corretamente */
-  font-size: 20px;
-  color: #999;
-}
-  
-
-  /* Responsividade */
-@media (max-width: 768px) {
-  .search-bar {
-    width: 70%; /* Aumenta a largura da barra de pesquisa em telas menores */
-  }
-
-  .logo {
-    width: 30px; /* Ajuste o tamanho da logo em telas menores */
-  }
-}
-.profile-icon {
-  font-size: 20px;
-  color: #fff;
-  margin-left: auto;
+.center-container {
   display: flex;
   align-items: center;
-  border-radius: 50%;
+  justify-content: center; 
+  gap: 20px; 
+  flex: 1; 
 }
-.profile-icon i{
-  color: #999;
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 100%; 
+  min-width: 400px;
+  max-width: 500px;
 }
-.profile-icon button{
-  border: none;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background-color: #333;
-  margin-right:10px ;
-}
-.profile-icon button:hover{
-  transform: ease 0.5s;
-  scale: 1.1;
-}
-.home-icon {
-  font-size: 20px;
+
+.search-input {
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 25px;
+  border: 2px solid transparent;
+  outline: none;
+  background-color: #2d2d2d;
   color: #fff;
-  margin-left: auto;
-  border-radius: 50%;
+  padding-left: 40px;
+  width: 100%; 
 }
-.home-icon i {
+
+.search-icon {
+  position: absolute;
+  left: 10px;
+  font-size: 20px;
   color: #999;
 }
-.home-icon button{
+
+.home-icon button {
+  background-color: #333;
   border: none;
+  border-radius: 50%;
   width: 50px;
   height: 50px;
-  border-radius: 50%;
-  background-color: #333;
-  margin-right:10px ;
-}
-.home-icon button:hover{
-  transform: ease 0.5s;
-  scale: 1.1;
-}
-.logo{
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
+  margin-right: 10px;
+}
+
+.home-icon i {
+  color: #fff;
+  font-size: 20px;
+}
+.fa-spotify {
+  color: #ffffff;
+  font-size: 40px;
+  cursor: pointer;
+}
+
+.profile-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  .center-container {
+    flex-direction: column; 
+  }
+  .search-bar {
+    min-width: 200px;
+  }
+}
+
+  .search-input:focus {
+    border: 2px solid #ccc; 
+  }
+  .search-input:hover{
+   background-color:#333 ; 
+  }
+.center{
+  display: flex;
+
 }

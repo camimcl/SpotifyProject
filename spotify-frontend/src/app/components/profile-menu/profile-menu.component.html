@@ -1,0 +1,7 @@
+<div class="profile-container" (click)="toggleMenu()">
+  <img *ngIf="user?.images?.length" [src]="user.images[0].url" alt="User Avatar" class="profile-img">
+  <div class="dropdown-menu" *ngIf="isMenuOpen">
+    <p class="user-name">{{ user?.display_name }}</p>
+    <button class="logout-button" (click)="logout()">Logout</button>
+  </div>
+</div>

@@ -6,9 +6,8 @@
     </button>
   </div>
 
-  <!-- Conteúdo da sidebar -->
   <div class="sidebar-content">
-    <div class="playlist-item" *ngFor="let playlist of playlists">
+    <div [routerLink]="['/playlist', playlist.id]" class="playlist-item" *ngFor="let playlist of playlists">
       <img [src]="playlist.image" alt="Playlist" class="playlist-image" />
       <div *ngIf="isOpen" class="playlist-info">
         <h3>{{ playlist.name }}</h3>

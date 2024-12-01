@@ -8,9 +8,12 @@ import { HeaderComponent } from './components/header/header.component';
 import { MainContainersComponent } from './components/main-containers/main-containers.component';
 import { PainelEsquerdoComponent } from './components/painel-esquerdo/painel-esquerdo.component';
 import { MusicPlayerComponent } from './components/music-player/music-player.component';
-import { DurationPipeTsPipe } from './duration.pipe.ts.pipe'; 
 import { HomeComponent } from './components/home/home.component';
 import { SidebarToggleDirective } from './directives/sidebar-toggle.directive';
+import { LoginComponent } from './components/login/login.component';
+import { ProfileMenuComponent } from './components/profile-menu/profile-menu.component';
+import { PlaylistDetailsComponent } from './components/playlist-details/playlist-details.component';
+import { FormatDurationPipe } from './format-duration.pipe';
 
 @NgModule({
   declarations: [
@@ -20,10 +23,13 @@ import { SidebarToggleDirective } from './directives/sidebar-toggle.directive';
     PainelEsquerdoComponent,
     MusicPlayerComponent,
     HomeComponent,
-    DurationPipeTsPipe,
     SidebarToggleDirective,
+    LoginComponent,
+    ProfileMenuComponent,
+    PlaylistDetailsComponent,
+    FormatDurationPipe,
   ],
-  exports: [DurationPipeTsPipe],
+  exports: [],
   imports: [
     BrowserModule,
     HttpClientModule,

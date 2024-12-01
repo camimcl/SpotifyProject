@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { SpotifyService } from '../../services/spotify.service';
 import { SharedDataService } from '../../services/shared-data.service';
 import { Router } from '@angular/router';
@@ -18,6 +18,9 @@ export class HeaderComponent  {
     private router : Router 
   ) {}
 
+  ngOnInit(){
+    
+  }
   searchSongs() {
     if (this.searchQuery.trim()) {
       this.sharedDataService.setSearchQuery(this.searchQuery); // Atualiza o query no serviço

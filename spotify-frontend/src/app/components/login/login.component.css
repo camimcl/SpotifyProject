@@ -1,0 +1,35 @@
+:host {
+    display: flex;
+    background-color: #222;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+button {
+font-size: 1.5rem;
+min-width: 350px;
+padding: 20px;
+border-radius: 500px;
+background-color: green;
+color: white;
+border: 0;
+cursor: pointer;
+margin: 150px;
+}
+.logo{
+    display: flex;
+    gap: 20px;
+    color: white;
+    justify-content: center;
+}
+.logo h2{
+    font-size: 70px;
+}
+.fa-spotify{
+    font-size: 100px;
+    color: white;
+}
