@@ -10,8 +10,6 @@ import { TSearchResults } from '../../types/main-containers-types';
 export class MainContainersComponent implements OnInit {
   searchQuery: string = '';
   searchResults: TSearchResults | undefined = undefined;
-  userPlaylists: any[] = [];
-  randomSongs: any[] = [];
 
   constructor(private sharedDataService: SharedDataService) {}
 
@@ -27,24 +25,8 @@ export class MainContainersComponent implements OnInit {
       console.log(results);
     });
 
-    // Carregar playlists e músicas aleatórias
-    this.loadUserPlaylists();
-    this.loadRandomSongs();
   }
 
-  loadUserPlaylists() {
-    this.userPlaylists = [
-      { name: 'Minha Playlist 1', image: 'https://via.placeholder.com/200' },
-      { name: 'Minha Playlist 2', image: 'https://via.placeholder.com/200' }
-    ];
-  }
-
-  loadRandomSongs() {
-    this.randomSongs = [
-      { title: 'Música 1', artist: { name: 'Artista 1' }, album: { cover: 'https://via.placeholder.com/200' } },
-      { title: 'Música 2', artist: { name: 'Artista 2' }, album: { cover: 'https://via.placeholder.com/200' } }
-    ];
-  }
   selectSong(song: any) {
     this.sharedDataService.setCurrentSong(song);
   }

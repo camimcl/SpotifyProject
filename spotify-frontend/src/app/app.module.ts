@@ -14,6 +14,7 @@ import { LoginComponent } from './components/login/login.component';
 import { ProfileMenuComponent } from './components/profile-menu/profile-menu.component';
 import { PlaylistDetailsComponent } from './components/playlist-details/playlist-details.component';
 import { FormatDurationPipe } from './format-duration.pipe';
+import { ClickOutsideDirective } from './directives/click-outside.directive';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { FormatDurationPipe } from './format-duration.pipe';
     ProfileMenuComponent,
     PlaylistDetailsComponent,
     FormatDurationPipe,
+    ClickOutsideDirective,
   ],
   exports: [],
   imports: [

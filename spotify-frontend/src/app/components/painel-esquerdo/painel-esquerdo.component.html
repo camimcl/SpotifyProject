@@ -1,15 +1,18 @@
-<div class="sidebar" [ngClass]="{'sidebar-minimized': !isOpen}">
+<div class="sidebar" appSidebarToggle>
   <div class="sidebar-header">
-    <h2 *ngIf="isOpen">Sua Biblioteca</h2>
-    <button class="toggle-button" (click)="toggleSidebar()">
-      <i [ngClass]="{'fa-arrow-left': isOpen, 'fa-solid fa-bars': !isOpen}" class="fa"></i>
+    <h2>Sua Biblioteca</h2>
+    <button class="toggle-button">
+      <i class="fa fa-bars"></i>
     </button>
   </div>
 
   <div class="sidebar-content">
-    <div [routerLink]="['/playlist', playlist.id]" class="playlist-item" *ngFor="let playlist of playlists">
+    <div
+      [routerLink]="['/playlist', playlist.id]"
+      class="playlist-item"
+      *ngFor="let playlist of playlists">
       <img [src]="playlist.image" alt="Playlist" class="playlist-image" />
-      <div *ngIf="isOpen" class="playlist-info">
+      <div class="playlist-info">
         <h3>{{ playlist.name }}</h3>
         <p>{{ playlist.owner }}</p>
       </div>

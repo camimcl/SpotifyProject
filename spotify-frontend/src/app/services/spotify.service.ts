@@ -12,22 +12,24 @@ import SpotifyWebApi from 'spotify-web-api-js';
 export class SpotifyService {
   spotifyApi : SpotifyWebApi.SpotifyWebApiJs = null; //outra api 
 
-  private apiUrl = "https://api.spotify.com/v1";
+  private apiUrl = "https://api.spotify.com/v1"; //oficial 
   private accessToken: string | null;
 
   constructor(private http: HttpClient) {
     this.carregarToken();
     this.spotifyApi = new SpotifyWebApi();
   }
+
   private getAuthHeaders(): HttpHeaders {
     return new HttpHeaders({
       'Authorization': `Bearer ${this.accessToken}`
     });
   }
+  
+  //metodos para uso do token
   private carregarToken(): void {
     this.accessToken = localStorage.getItem('accessToken');
   }
-
   definirAcessToken(token:string){
     this.spotifyApi.setAccessToken(token);
     localStorage.setItem('token',token);
@@ -37,9 +39,12 @@ export class SpotifyService {
   temTokenValido(): boolean {
     return !!this.accessToken;
   }
+
  obterInformacoesUsuario(): Promise<any> {
   return this.spotifyApi.getMe();
 }
+
+//metodos p formar o url e receber o token de autenticação
   obterUrlLogin() {
     const authEndpoint = `${SpotifyConfiguration.authEndpoint}?`;
     const clientId = `client_id=${SpotifyConfiguration.clientId}&`;
@@ -58,11 +63,36 @@ export class SpotifyService {
     return token;
   }
 
+  //metodos com implementação no código
   getTopArtists(): Observable<any> {
     const url = `${this.apiUrl}/me/top/artists?limit=12`; 
     return this.http.get(url, { headers: this.getAuthHeaders() });
   }
 
+  searchSongs(query: string): Observable<any> {
+    const url = `${this.apiUrl}/search?q=${encodeURIComponent(query)}&type=track`;
+    
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.accessToken}`
+    });
+    
+    return this.http.get(url, { headers });
+  }
+  getUserPlaylists(): Observable<TSearchResults> {
+    const url = `${this.apiUrl}/me/playlists`;
+    return this.http.get<TSearchResults>(url, { headers: this.getAuthHeaders() }).pipe(
+      catchError((error) => {
+        console.error('Erro ao buscar playlists do usuário:', error);
+        return throwError(() => new Error('Erro ao buscar playlists'));
+      })
+    );
+  }
+  getRecentlyPlayed(): Observable<any> {
+    const url = `${this.apiUrl}/me/player/recently-played?limit=12`;
+    return this.http.get(url, { headers: this.getAuthHeaders() });
+  }
+
+  //metodos que não foram implementados.
   getTopTrendings(): Observable<any> {
     const url = `${this.apiUrl}/playlists/37i9dQZEVXbMDoHDwVN2tF`; 
     return this.http.get(url, { headers: this.getAuthHeaders() });
@@ -90,28 +120,6 @@ export class SpotifyService {
         return throwError(() => new Error('Erro na requisição'));
       })
     );
-  }
-  searchSongs(query: string): Observable<any> {
-    const url = `${this.apiUrl}/search?q=${encodeURIComponent(query)}&type=track`;
-
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${this.accessToken}`
-    });
-
-    return this.http.get(url, { headers });
-  }
-  getUserPlaylists(): Observable<TSearchResults> {
-    const url = `${this.apiUrl}/me/playlists`;
-    return this.http.get<TSearchResults>(url, { headers: this.getAuthHeaders() }).pipe(
-      catchError((error) => {
-        console.error('Erro ao buscar playlists do usuário:', error);
-        return throwError(() => new Error('Erro ao buscar playlists'));
-      })
-    );
-  }
-  getRecentlyPlayed(): Observable<any> {
-    const url = `${this.apiUrl}/me/player/recently-played?limit=12`;
-    return this.http.get(url, { headers: this.getAuthHeaders() });
   }
 
 }

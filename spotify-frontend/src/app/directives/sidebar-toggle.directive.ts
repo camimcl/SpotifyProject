@@ -1,4 +1,4 @@
-import { Directive, HostBinding, HostListener } from '@angular/core';
+import { Directive, HostBinding, HostListener, ElementRef } from '@angular/core';
 
 @Directive({
   selector: '[appSidebarToggle]'
@@ -6,8 +6,12 @@ import { Directive, HostBinding, HostListener } from '@angular/core';
 export class SidebarToggleDirective {
   @HostBinding('class.sidebar-minimized') isMinimized = false;
 
-  @HostListener('click') toggleSidebar() {
-    this.isMinimized = !this.isMinimized;
-    document.body.classList.toggle('sidebar-minimized', this.isMinimized);
+  constructor(private el: ElementRef) {}
+
+  @HostListener('click', ['$event.target']) toggleSidebar(target: HTMLElement) {
+    if (target.classList.contains('toggle-button') || target.closest('.toggle-button')) {
+      this.isMinimized = !this.isMinimized;
+      document.body.classList.toggle('sidebar-minimized', this.isMinimized);
+    }
   }
 }

@@ -2,18 +2,15 @@
 <app-painel-esquerdo></app-painel-esquerdo>
 <app-music-player></app-music-player>
 <div class="main-container">
-    <div *ngIf="searchQuery && searchResults" class="search-results-container">
-      <h2>Resultados da Pesquisa</h2>
-      <div class="song-cards">
-        <div *ngFor="let item of searchResults.items" class="song-card" (click)="selectSong(item)">
-          <img [src]="item.album.images[0].url" alt="Song" />
-          <h3>{{ item.name }}</h3>
-          <p *ngFor="let artist of item.artists">{{ artist.name }}</p>
-        </div>
+  <div *ngIf="searchQuery && searchResults" class="search-results-container">
+    <h2>Resultados da Pesquisa</h2>
+    <div class="song-cards">
+      <!-- Aplicando o Pipe Slice para limitar os resultados -->
+      <div *ngFor="let item of searchResults.items | slice: 0:20" class="song-card" (click)="selectSong(item)">
+        <img [src]="item.album.images[0].url" alt="Song" />
+        <h3>{{ item.name }}</h3>
+        <p *ngFor="let artist of item.artists">{{ artist.name }}</p>
       </div>
     </div>
+  </div>
 </div>
-    
-
-  
-  
